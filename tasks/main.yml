@@ -1,0 +1,21 @@
+---
+- name: Install the latest stable Android SDK tools via Homebrew
+  package:
+    name: android-sdk
+    state: latest
+  when: ansible_os_family == "Darwin"
+
+- name: Set ANDROID_HOME env var for bash
+  lineinfile:
+    dest: ~/.bashrc
+    line: export ANDROID_HOME=/usr/local/opt/android-sdk
+
+- name: Set ANDROID_HOME env var for zsh
+  lineinfile:
+    dest: ~/.zshrc
+    line: export ANDROID_HOME=/usr/local/opt/android-sdk
+
+- name: Set ANDROID_HOME env var for fish
+  lineinfile:
+    dest: ~/.config/fish/config.fish
+    line: set -gx ANDROID_HOME /usr/local/opt/android-sdk
